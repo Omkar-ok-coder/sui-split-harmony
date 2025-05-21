@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function WalletConnect() {
   const { user, connectWallet, disconnectWallet, isConnecting } = useWallet();
@@ -16,32 +17,56 @@ export function WalletConnect() {
     return (
       <Button 
         onClick={connectWallet} 
-        className="bg-suiPurple hover:bg-suiPurple-dark"
+        className="bg-suiPurple hover:bg-suiPurple-dark transition-all duration-300 shadow hover:shadow-md"
         disabled={isConnecting}
       >
         <Wallet className="mr-2 h-4 w-4" />
-        {isConnecting ? "Connecting..." : "Connect Wallet"}
+        {isConnecting ? (
+          <span className="flex items-center">
+            <span className="h-2 w-2 bg-white rounded-full mr-1 animate-pulse"></span>
+            Connecting...
+          </span>
+        ) : (
+          "Connect Wallet"
+        )}
       </Button>
     );
   }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="border-suiPurple text-suiPurple font-medium">
-          <Wallet className="mr-2 h-4 w-4" />
-          {user.shortAddress}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem 
-          className="cursor-pointer text-destructive focus:text-destructive" 
-          onClick={disconnectWallet}
-        >
-          <LogOut className="mr-2 h-4 w-4" />
-          Disconnect
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="outline" 
+                className="border-suiPurple text-suiPurple font-medium hover:bg-suiPurple/10 transition-all duration-300"
+              >
+                <div className="h-5 w-5 rounded-full sui-gradient-bg flex items-center justify-center mr-2">
+                  <span className="text-white text-xs font-bold">{user.shortAddress.charAt(0)}</span>
+                </div>
+                {user.shortAddress}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 p-1">
+              <div className="px-2 py-1.5 text-xs text-muted-foreground mb-1">
+                Connected as {user.shortAddress}
+              </div>
+              <DropdownMenuItem 
+                className="cursor-pointer text-destructive focus:text-destructive hover:bg-destructive/10 transition-colors" 
+                onClick={disconnectWallet}
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                Disconnect
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Connected wallet: {user.shortAddress}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
