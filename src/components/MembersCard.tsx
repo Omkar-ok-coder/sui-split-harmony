@@ -11,6 +11,7 @@ import {
 import { AddMemberForm } from "./AddMemberForm";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { BookUser } from "lucide-react";
 
 export function MembersCard() {
   const { user } = useWallet();
@@ -22,10 +23,15 @@ export function MembersCard() {
 
   return (
     <Card className="border-suiPurple/10 shadow-sm hover:shadow-md transition-all card-hover">
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <div>
-          <CardTitle>Group Members</CardTitle>
-          <CardDescription>People in your expense group</CardDescription>
+      <CardHeader className="flex flex-row items-center justify-between pb-2 card-header-gradient">
+        <div className="flex items-center">
+          <div className="mr-2 h-8 w-8 rounded-full sui-gradient-bg flex items-center justify-center shadow-sm">
+            <BookUser className="h-4 w-4 text-white" />
+          </div>
+          <div>
+            <CardTitle>Group Members</CardTitle>
+            <CardDescription>People in your expense group</CardDescription>
+          </div>
         </div>
         <AddMemberForm />
       </CardHeader>
@@ -39,7 +45,7 @@ export function MembersCard() {
               return (
                 <HoverCard key={address}>
                   <HoverCardTrigger asChild>
-                    <div className="flex items-center p-3 rounded-md bg-secondary hover:bg-secondary/80 transition-colors cursor-default">
+                    <div className="flex items-center p-3 rounded-md bg-secondary hover:bg-secondary/80 transition-colors cursor-default transform hover:translate-x-1 duration-200">
                       <div className="h-8 w-8 rounded-full sui-gradient-bg flex items-center justify-center mr-2 shadow-sm">
                         <span className="text-white text-xs font-medium">{shortAddr.charAt(0).toUpperCase()}</span>
                       </div>
@@ -48,9 +54,14 @@ export function MembersCard() {
                           {isCurrentUser ? `${shortAddr} (You)` : shortAddr}
                         </p>
                       </div>
+                      {isCurrentUser && (
+                        <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-suiPurple/10 text-suiPurple">
+                          You
+                        </span>
+                      )}
                     </div>
                   </HoverCardTrigger>
-                  <HoverCardContent className="w-80">
+                  <HoverCardContent className="w-80 bg-white/95 backdrop-blur-sm border border-suiPurple/10 shadow-lg">
                     <div className="flex justify-between space-x-4">
                       <div className="space-y-1">
                         <h4 className="text-sm font-semibold">Wallet Address</h4>

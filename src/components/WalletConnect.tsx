@@ -17,7 +17,7 @@ export function WalletConnect() {
     return (
       <Button 
         onClick={connectWallet} 
-        className="bg-suiPurple hover:bg-suiPurple-dark transition-all duration-300 shadow hover:shadow-md"
+        className="bg-suiPurple hover:bg-suiPurple-dark transition-all duration-300 shadow hover:shadow-md button-3d"
         disabled={isConnecting}
       >
         <Wallet className="mr-2 h-4 w-4" />
@@ -41,7 +41,7 @@ export function WalletConnect() {
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="outline" 
-                className="border-suiPurple text-suiPurple font-medium hover:bg-suiPurple/10 transition-all duration-300"
+                className="border-suiPurple text-suiPurple font-medium hover:bg-suiPurple/10 transition-all duration-300 button-3d"
               >
                 <div className="h-5 w-5 rounded-full sui-gradient-bg flex items-center justify-center mr-2">
                   <span className="text-white text-xs font-bold">{user.shortAddress.charAt(0)}</span>
@@ -49,7 +49,7 @@ export function WalletConnect() {
                 {user.shortAddress}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 p-1">
+            <DropdownMenuContent align="end" className="w-56 p-1 bg-white/95 backdrop-blur-sm border border-suiPurple/10 shadow-lg">
               <div className="px-2 py-1.5 text-xs text-muted-foreground mb-1">
                 Connected as {user.shortAddress}
               </div>
@@ -63,7 +63,7 @@ export function WalletConnect() {
             </DropdownMenuContent>
           </DropdownMenu>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent className="bg-white border border-suiPurple/10 shadow-lg">
           <p>Connected wallet: {user.shortAddress}</p>
         </TooltipContent>
       </Tooltip>

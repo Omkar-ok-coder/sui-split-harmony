@@ -8,6 +8,7 @@ import { Header } from "@/components/Header";
 import { MembersCard } from "@/components/MembersCard";
 import { useWallet } from "@/context/WalletContext";
 import { Separator } from "@/components/ui/separator";
+import { BookUser, DollarSign } from "lucide-react";
 
 const Index = () => {
   const { user } = useWallet();
@@ -26,7 +27,9 @@ const Index = () => {
           <div className="space-y-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-suiPurple to-suiPurple-light bg-clip-text text-transparent">Dashboard</h2>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-suiPurple to-suiPurple-light bg-clip-text text-transparent flex items-center">
+                  <DollarSign className="mr-2 h-6 w-6 text-suiPurple" /> Dashboard
+                </h2>
                 <p className="text-sm text-muted-foreground">Manage your shared expenses</p>
               </div>
               <AddExpenseForm />
@@ -49,7 +52,7 @@ const Index = () => {
         )}
       </main>
       
-      <footer className="border-t py-4 px-4 text-center text-sm text-muted-foreground bg-white/90">
+      <footer className="border-t py-4 px-4 text-center text-sm text-muted-foreground bg-white/90 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <p>SuiSplit © {new Date().getFullYear()} - Splitting bills on Sui blockchain</p>
         </div>

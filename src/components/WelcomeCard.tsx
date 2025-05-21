@@ -6,8 +6,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import { WalletConnect } from "./WalletConnect";
+import { Badge } from "@/components/ui/badge";
 
 export function WelcomeCard() {
   const { user } = useWallet();
@@ -17,9 +19,9 @@ export function WelcomeCard() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto bg-gradient-to-br from-white to-suiGray-light shadow-lg border-suiPurple/10 transition-all duration-300 hover:shadow-xl">
+    <Card className="w-full max-w-md mx-auto bg-gradient-to-br from-white to-suiGray-light shadow-lg border-suiPurple/10 transition-all duration-300 hover:shadow-xl card-hover">
       <CardHeader className="pb-2">
-        <div className="mx-auto h-16 w-16 rounded-full sui-gradient-bg flex items-center justify-center mb-4 shadow-md">
+        <div className="mx-auto h-16 w-16 rounded-full sui-gradient-bg flex items-center justify-center mb-4 shadow-md animate-float">
           <span className="text-white font-bold text-2xl">S</span>
         </div>
         <CardTitle className="text-2xl text-center bg-gradient-to-r from-suiPurple to-suiPurple-light bg-clip-text text-transparent">
@@ -38,10 +40,15 @@ export function WelcomeCard() {
         <div className="w-full max-w-xs animate-pulse-slow">
           <WalletConnect />
         </div>
-        <div className="w-full pt-4 text-xs text-center text-muted-foreground border-t">
-          <p>Safe, secure, and decentralized bill splitting</p>
+        <div className="flex gap-2 flex-wrap justify-center">
+          <Badge variant="outline" className="bg-white/50 text-suiPurple">Easy to use</Badge>
+          <Badge variant="outline" className="bg-white/50 text-suiPurple">Secure</Badge>
+          <Badge variant="outline" className="bg-white/50 text-suiPurple">Decentralized</Badge>
         </div>
       </CardContent>
+      <CardFooter className="flex justify-center pt-4 text-xs text-center text-muted-foreground border-t">
+        <p>Safe, secure, and decentralized bill splitting</p>
+      </CardFooter>
     </Card>
   );
 }

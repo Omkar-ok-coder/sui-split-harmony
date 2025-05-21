@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -51,8 +52,21 @@
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 .animate-pulse-slow {
   animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
 /* Enhanced Sui gradient */
@@ -61,14 +75,19 @@
   transition: all 0.3s ease;
 }
 
+.sui-gradient-bg:hover {
+  background: linear-gradient(135deg, #a794f6 0%, #8a76b7 100%);
+  transform: scale(1.05);
+}
+
 /* Card hover effects */
 .card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(126, 105, 171, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -5px rgba(126, 105, 171, 0.25);
 }
 
 /* Button hover animations */
@@ -93,6 +112,29 @@
   transform: translateX(0);
 }
 
+/* Enhanced glossy effects */
+.glossy-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+/* 3D Button */
+.button-3d {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -111,4 +153,20 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #7E69AB;
+}
+
+/* Enhanced dashboard section */
+.dashboard-section {
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-section:hover {
+  box-shadow: 0 10px 20px rgba(124, 104, 171, 0.1);
+}
+
+/* Card header gradients */
+.card-header-gradient {
+  background: linear-gradient(to right, rgba(155, 135, 245, 0.1), rgba(155, 135, 245, 0.02));
+  border-bottom: 1px solid rgba(155, 135, 245, 0.1);
 }
